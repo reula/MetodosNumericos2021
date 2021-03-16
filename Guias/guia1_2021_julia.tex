@@ -1,0 +1,506 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+%\usepackage{babel}
+\usepackage{hyperref} 
+
+\topmargin -2truecm
+\textheight 24truecm
+\textwidth 17.5truecm
+\oddsidemargin -0.5truecm
+\parskip 1truemm
+%\parsep 1truemm
+\parindent 0em
+\usepackage{amssymb}
+
+\def\d{\,{\rm d}}
+
+\def\RR{{\mathbb R}}
+\def\CC{{\mathbb C}}
+\def\NN{{\mathbb N}}
+\def\ZZ{{\mathbb Z}}
+\def\EE{{\mathbb E}}
+\newcounter{problema}
+\newcommand{\prob}[1]{\vspace{0.33cm}\stepcounter{problema}
+                 \noindent{\bf Ejercicio \arabic{problema}:}{\it #1}}
+
+\begin{document}
+\renewcommand{\labelenumi}{\bf \alph{enumi})}
+\renewcommand{\labelenumii}{\alph{enumi}$_\arabic{enumii}$)}
+%\thispagestyle{empty}
+\begin{center}
+{\large {\bf M\'etodos Num\'ericos}}\\
+{\small Aula Virtual: 
+\href{https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=704}
+{https://famaf.aulavirtual.unc.edu.ar/course/view.php?id=704}
+	} \\
+
+\vspace*{1.5cm} 
+\rule{0em}{2.em}
+{\bf Gu\'{i}a 1} \\ 
+{\em Julia} \\
+Marzo de 2021
+\end{center}
+\vspace*{.5cm} 
+
+% \noindent
+% {\bf Nota:} La informaci\'on, en la computadora que use, es guardada de forma permanente, en lo que se suele llamar disco r\'igido.
+% Es su responsabilidad mantener un sistema ordenado de trabajo, donde la informaci\'on est\'a guardada en un \'arbol natural de organizaci\'on.
+% Dependiendo del sistema operativo, cuando se inicia una ventana de trabajo o terminal, se puede estar en la ubicaci\'on inicial, que gen\'ericamente llamaremos \emph{home}, que por ejemplo podr\'ia ser:
+
+% \verb+    C:\usuarios\jaimito+
+
+% si se est\'a en Windows, o por ejemplo en:
+
+% \verb+    /home/jaimito+
+
+% si se est\'a en linux (ubuntu).
+% En el lugar donde en el ejemplo aparece {\tt jaimito}
+% deber\'ia aparecer su nombre de usuario.
+% De aqu\'i en adelante asumimos que trabaja con un sistema operativo linux,
+% como por ejemplo \emph{ubuntu}.
+
+\subsection*{Mini tutorial: uso de comandos de terminal}
+
+Para usuarios Linux pueden ver una hoja de los comandos aqu\'i: 
+
+\verb+    +\href{https://cheatography.com/jonathan992/cheat-sheets/gnu-linux-command-spanish/}
+{https://cheatography.com/jonathan992/cheat-sheets/gnu-linux-command-spanish/}
+    
+Para usuarios de Windows ver:
+
+\verb+    +\href{XXX}
+{XXX}
+
+\subsection*{Mini tutorial: gr\'aficos}
+
+
+Tenga a mano el siguiente tutorial de la librer\'ia \verb+Plots+: 
+
+\verb+    +\href{http://docs.juliaplots.org/latest/}
+{http://docs.juliaplots.org/latest/}
+
+El mecanismo b\'asico de ploteo toma dos vectores, $(x, y)$ y genera una serie de puntos en el plano con coordenadas los pares ordenados de los vectores 
+$(x[i],y[i])$ si se usa la funci\'on scatter se plotean los puntos, si se usa la funci\'on \verb+plot+, 
+estos puntos son interpolados por una curva. En algunos casos el vector $x$ puede ser elegido, por simplicidad, como un intervalo: \verb+x = 1:N+, o si queremos que tenga cierto intervalo predeterminado con \verb+x = 0:0.1:2+ por ejemplo. 
+En Julia se puede 
+aplicar una funci\'on definida para n\'umeros reales a un vector y esta retorna un vector con los valores de $f$ en los elementos del vector. 
+Por lo tanto se puede usar la asignaci\'on: \verb+y = f.(x)+.
+Note el \verb+.+ luego del nombre de la funci\'on, eso indica en el lenguaje que la funci\'on se aplica a cada uno de los elementos del vector.
+
+Aqu\'i va un ejemplo. 
+Llamo a la librer\'ia, de ese modo todos las funciones de la misma quedan autom\'aticamente accesibles.
+
+\verb+    using Plots+
+
+Defino los valores \verb+x+ de 4 en 4 desde -400 a 400
+
+\verb+    x = -400:4:400+
+
+Calculo los valores \verb+y+
+
+\verb+    y = log.(10.0.^(x))+
+
+Note los puntos, indican a Julia que cada funcion toma un vector de valores. 
+Luego llamamos a la funci\'on scatter que literalmente graficar\'a los datos
+
+\verb+    scatter(x,y)+
+
+El gr\'afico aparecer\'a cortado pues la imagen de la funci\'on interna (potencia de 10) excede el intervalo de definicion de los numeros en \verb+Float64+.
+
+
+\subsection*{Mini tutorial: vectores y matrices}
+
+Veamos como declarar arreglos (del ingl\'es array). 
+Consideremos un arreglo \verb+a+ declarado de la siguiente manera:
+
+\verb+    a = Array{Float64,2}(undef,(50,20))+
+   
+Aqu\'i \verb+Array+ es el nombre de una funci\'on. 
+Las expresi\'on en llaves es de la forma \verb+{T,N}+ indicando el tipo de los elementos (en este caso, n\'umeros de punto flotante de 64 bits) y el n\'umero de dimensiones (2 en este caso, por lo que el arreglo representa una matriz). 
+Finalmente, entre par\'entesis, la primera expresi\'on indica especifica como se han de inicializar los elementos del array (en este caso se usa \verb+undef+, lo cual indica que se dejen los elementos sin inicializar), la segunda expresi\'on indica el tama\~no de las dimensiones del array (en este caso se usa la tupla de dos elementos \verb+(50,20)+, lo cual indica que la primera dimensi\'on es de tama\~no 50 y la segunda de tama\~no 20). 
+
+Un arreglo con s\'olo 1 dimensi\'on es considerado un vector. 
+Por ende, un vector \verb+v+ pude declarase de la forma
+
+\verb+    v = Array{Float64,1}(undef,30)+
+    
+En este caso, no hace falta especificar el tama\~no de la \'unica dimensi\'on usando una tupla. 
+Con un simple n\'umero es suficiente. 
+Alternativamente, un vector puede declarase de la forma
+
+\verb+    v = Vector{Float64}(undef,30)+
+    
+Internamente, Julia remplazar\'a esta \'ultima expresi\'on por la anterior. 
+Finalmente, es posible declarar vectores de tama\~no nulo, cuyos tama\~nos pueden ser posteriormente modificados. 
+Por ejemplo, a expresi\'on
+
+\verb+    a = Array{Float64,1}()+
+    
+declara un arreglo de 1 dimensi\'on de tama\~no 0. 
+El mismo puede ir rellenandose, por ejemplo, usando la funcion \verb+push!+ (recordemos que las funciones que terminan con el s\'imbolo \verb+!+ sirven para modificar contenido). 
+Por ejemplo, si escribimos y ejecutamos el c\'odigo:
+
+\begin{verbatim}
+    a = Array{Float64,1}()
+    println(a)
+    push!(a,10.0)
+    push!(a,20.0)
+    push!(a,30.0)
+    println(a)
+\end{verbatim}
+    
+Veremos como resultado las expresiones:
+
+\begin{verbatim}
+    Float64[]
+    [10.0, 20.0, 30.0]
+\end{verbatim}    
+    
+correspondiendo, primero a un arreglo vac\'io y luego a un arreglo con 3 elementos. 
+Para mayor informaci\'on sobre la declaraci\'on de arreglos, visite la p\'agina:
+
+\verb+    +\href{https://docs.julialang.org/en/v1/base/arrays/}
+{https://docs.julialang.org/en/v1/base/arrays/}  
+
+\subsection*{Ejercicios}
+
+\prob{} 
+En una terminal, cree un directorio nuevo usando el comando \verb+mkdir+. 
+Descargue desde el navegador el archivo de esta gu\'ia y mueva el mismo al nuevo directorio.
+Cambie el nombre del archivo usando \verb+mv+ a {\em guia1.pdf} y copie usando \verb+cp+ el archivo a otro con nombre {\em Copia.pdf}.
+Luego, liste usando \verb+ls+ el contenido del directorio y verifique los nombres y el tama\~no y fecha de los mismos usando \verb+ls -l+.
+Averig\"ue qu\'e espacio ocupa el directorio usando el comando \verb+du -h+.
+Finalmente, borre todos los archivos y el directorio usando \verb+rm+ y \verb+rmdir+.
+
+\prob{} 
+Grafique la funci\'on $f(x)=\sin(2\pi x)$ para $x\in[0,5]$. Var\'ie la cantidad de puntos que usa para mejorar la calidad del gr\'afico. De nombre a los ejes, t\'itulo al gr\'afico y defina la leyenda para que aparezca $f(x)$.
+Por regla general, use la funci\'on \verb+scatter+ para graficar puntos y la funci\'on \verb+plot+ para graficar curvas. 
+Tenga a mano el tutorial de la librer\'ia o paquete \verb+Plots+:
+
+\verb+    +\href{http://docs.juliaplots.org/latest/}
+{http://docs.juliaplots.org/latest/}
+
+\prob{} 
+\begin{itemize}
+\item[a)] 
+Cree un directorio nuevo, \verb+mkdir tmp/+. 
+Ingrese al nuevo directorio, \verb+cd tmp+.
+
+\item[b)] 
+Dentro del directorio creado, use su editor de texto preferido o las funciones \verb+open+ y \verb+print+ de Julia para crear un archivo de texto llamado \verb+datos.dat+ con el siguiente contenido
+
+\verb+    0.0  1.0  1.2+
+
+\verb+    1.0  1.5  1.6+
+
+\verb+    2.0  2.0  2.0+
+
+\verb+    3.6  2.5  2.4+
+
+\item[c)] 
+Usar las funciones \verb+Vector+ para crear arrays llamados \verb+xvals+, \verb+y1vals+ e \verb+y2vals+. Luego utilice las funciones \verb+open+, \verb+eachline+, \verb+parse+ y \verb+push!+ para cargar los datos de las columnas del archivo \verb+datos.dat+ en dichos arrays.
+
+\item[d)] 
+Utilice la funci\'on \verb+scatter+ del paquete \verb+Plots+ para graficar las funciones definidas por \verb+y1vals+ vs \verb+xvals+ e \verb+y2vals+ vs \verb+xvals+.
+
+\item[e)] 
+En el mismo gr\'afico incluya las funciones $y_3(x) = 0.5x + 1$ e $y_4(x) = 0.4x + 1.2$
+
+\item[f)] 
+Agregue el labels $x$ al eje horizontal y el label $y$ al vertical.
+
+\item[g)] 
+Titule el gr\'afico ``Funciones lineales''.
+
+\item[h)] 
+Pruebe habilitar y deshabilitar la grilla.
+
+\item[i)] 
+Exporte el gr\'afico a un archivo formato \verb+.pdf+ (u otro formato de su preferencia, tales como \verb+.png+, \verb+.jpg+ o \verb+.ps+). 
+Utilice su visualizador de \verb+.pdf+ (o \verb+.jpg+, etc) preferido para constatar los cambios.
+
+\item[j)] 
+Experimente graficar cambiando el tama\~no de los puntos y el grosor de las l\'ineas, etc.
+
+\item[k)] 
+Modifique el archivo \verb+datos.dat+ agregando, sacando y/o cambiando n\'umeros. 
+Luego regrafique y constante los cambios.
+\end{itemize}
+
+{\bf Ejercicio 3 bis:}
+En Julia existe varias formas alternativas y convenientes de guardar en, y leer datos de, archivos. Una forma la provee la librer\'ia o paquete \verb+CSV+, que aqu\'i no veremos. 
+Otra particularmente conveniente utiliza el formato \verb+JLD2+ y es prove\'ida por el paquete \verb+FileIO+. 
+Ejercit\'emonos con un ejemplo.
+
+\begin{itemize}
+\item[a)]
+Guarde los arreglos \verb+vals+, \verb+y1vals+ e \verb+y2vals+ en un archivo usando el formato \verb+JLD2+ v\'ia el c\'odigo
+
+\begin{verbatim}
+    mkdir("tmp")
+    save("tmp/datos.jld2", Dict("xvals" => xvals, "y1vals" => y1vals))    
+\end{verbatim}
+
+\item[b)]
+Cargue dichos arreglos del archivo \verb+datos.jld2+ a nuevos arreglos de nombres \verb+xnuevo+, \verb+y1nuevo+ e \verb+y2nuevo+ v\'ia el c\'odigo
+
+\begin{verbatim}
+    xnuevo = load("tmp/datos.jld2", "xvals")
+    y1nuevo = load("tmp/datos.jld2", "y1vals")
+    y2nuevo = load("tmp/datos.jld2", "y1vals")
+\end{verbatim}
+    
+\item[c)]
+Grafique \verb+y1nuevo+ vs \verb+xnuevo+ e \verb+y2nuevo+ vs \verb+xnuevo+. 
+
+\item[d)]
+Finalmente, borre el directorio temporario escribiendo
+
+\verb+    rm("tmp")+
+\end{itemize}
+
+\prob{}
+Evaluar en celdas de Julia las siguientes operaciones matem\'aticas.
+
+Usando divisi\'on entera eval\'ue:
+
+\begin{itemize}
+\item[a)]
+$5 / 2 + 20/ 6$
+
+\item[b)]
+b) $4 \times 6 / 2 - 15 / 2$
+
+\item[c)]
+$5 \times 15 / 2 / (4 - 2)$
+\end{itemize}
+
+Usando divisi\'on entera, flotante y racional eval\'ue:
+
+\begin{itemize}
+\item[d)]
+$1 + 1/4$
+
+\item[e)]
+$5.7/3$
+\end{itemize}
+
+Ayudas:
+
+La divisi\'on entera se representa con el s\'imbolo unicode $\div$.
+Para escribir o ingresar dicho s\'imbolo en la c\'onsola de Julia o en una notebook de Julia, escribir \verb+\div+ e inmediatamente despu\'es presionar la tecla \verb+tab+.
+De manera an\'aloga se escribe cualquier otro s\'imbolo unicode.
+En la siguiente p\'agina Ud. puede encontrar algunos s\'imbolos unicode relevantes para Julia.
+
+\verb+    +\href{https://docs.julialang.org/en/v1/manual/unicode-input/}
+{https://docs.julialang.org/en/v1/manual/unicode-input/}
+
+La divisi\'on flotante se representa con la barra \verb+/+.
+La divisi\'on racional se representa con la doble barra `//`.
+
+Para crear un entero de un dado n\'umero de bits usamos funciones como \verb+Int16()+, \verb+Int32()+, etc. 
+Para crear n\'umeros de punto flotante usamos \verb+Float32()+, \verb+Float64()+, etc. 
+Tambi\'en podemos crear enteros sin signo usando \verb+UInt16()+, \verb+UInt32()+, etc.
+Cuando el tipo de un n\'umero tipo no se especifica expl\'icitamente, Julia asigna por defecto el tipo \verb+Float64+ o el tipo \verb+Int64+ dependiendo de si el n\'umero tiene punto o no, o dependiendo del tipo de operaci\'on involucrada (ej. divisi\'on en punto flotante, entera o racional).
+Para m\'as detalles visite la p\'agina:
+
+\verb+    +\href{https://docs.julialang.org/en/v1/manual/integers-and-floating-point-numbers/}
+{https://docs.julialang.org/en/v1/manual/integers-and-floating-point-numbers/}
+
+\prob{}   
+Evaluar las siguientes operaciones usando matem\'atica de enteros con signo de 2 bytes (\verb+Int16+ del ingl\'es Integer de 16 bits):
+
+\begin{itemize}
+\item[a)] 
+$32767 + 1$
+
+\item[b)] 
+$30000 \times 2$
+
+\item[c)] 
+$-30000-10000$
+\end{itemize}
+
+y usando enteros sin signo de 2 bytes (\verb+UInt16+ del ingl\'es Unsigned Integer de 16 bits):
+
+\begin{itemize}
+\item[d)] 
+$32767 + 1$
+
+\item[e)] 
+$64535 + 1$
+\end{itemize}
+
+\prob{} 
+Escriba un programa que pida dos n\'umeros reales e imprima en la pantalla el mayor de ellos. El programa debe indicar si los n\'umeros son iguales.
+
+% 3
+\prob{} 
+Escriba un programa que pida un n\'umero entero y determine si es m\'ultiplo de 2 y de 5.
+
+% 4
+\prob{} 
+Escriba una programa que ingrese los coeficientes $A$, $B$ y $C$ de un polinomio real de segundo grado, $Ax^2+Bx+C$, calcule e imprima en pantalla las dos ra\'ices del polinomio en formato complejo $a+ib$, sin utilizar \'algebra compleja.
+
+\prob{} 
+Escriba un programa que permita convertir n\'umeros naturales con base 10 a la base $b \leq 16$.
+El programa debe pedir como entrada $b$ y el n\'umero natural a convertir (que debe estar en base 10).
+Ayuda: desarrolle el algoritmo usando lápiz y papel.
+
+% 5
+%\prob{} Dise\~nar una funci\'on que calcule la potencia en\'esima de un n\'umero, es
+%decir que devuelva $X^n$ para $X$ real y $n$ entero. Realice un programa que
+%utilice la funci\'on e imprima en pantalla las primeras 5 potencias naturales de
+%un n\'umero ingresado.
+
+
+%\prob{} Los per\'{\i}metros $\pi_k$ de poligonos regulares de $k$ lados inscriptos en un 
+%c\'{\i}rculo de diametro unidad son $\pi_8=3.061467,\,\pi_{16}=3.121445,\,\pi_{32}=3.136548,\,\pi_{64}=3.140331$ 
+%respectivamente, mientras que los per\'{\i}metros de poligonos regulares circunscriptos% son 
+% $\Pi_8=3.313708,\,\Pi_{16}=3.182598,\,\Pi_{32}=3.151725,\,\Pi_{64}=3.144118$
+%respectivamente.  Asuma que 
+%
+%\[
+%\pi_k\,=\,c_0+\frac{c_1}{k}+\frac{c_2}{k^2}+\frac{c_3}{k^3}+\ldots \;\;\;;\;\;\;
+%\Pi_k\,=\,C_0+\frac{C_1}{k}+\frac{C_2}{k^2}+\frac{C_3}{k^3}+\ldots
+%\]
+%
+%De una estimaci\'on para $\pi$.
+%Compare este resultado con la mejor evaluaci\'on que se puede obtener con el algoritmo %de 
+%Arq\'{\i}medes.
+
+% 7
+\prob{}
+Escriba un programa para calcular un valor aproximado de $\pi$ utilizando:
+
+\begin{itemize}
+\item[a)]
+la f\'ormula recurrente de Arqu\'imedes, en dode los par\'ametros $p_n$ y $P_n$ de los pol\'igonos regulares de $n$ lados inscriptos y circunscriptos en la circunsferencia de radio $1/2$, respectivamente, se usan para acotar $\pi$ ya que $p_n < \pi < P_n$ para todo $n$ y $P_n-p_n$ disminuye con $n$.
+
+La f\'ormula de recurrencia que encontr\'o Arqu\'imides es la siguiente:
+
+$$P_{2n} = \frac{2p_nP_n}{p_n + P_n} \;\;\;\;\; p_{2n} = \sqrt{P_{2n}p_n}$$
+
+Usando los valores $P_6 = 2\sqrt{3}$ y $p_6 = 3$, correspondientes al hex\'agono, escriba un programa que realice 20 iteraciones, con $n = 6 \cdot 2^k$, y $k = 1 \ldots 20$, y escriba los resultados en pantalla.
+
+\item[b)]
+la productoria de Wallis
+$$\frac{\pi}{2} = \prod_1^{\infty} \frac{(2n)^2}{(2n)^2 - 1} = \frac{3}{4}\frac{16}{15}\frac{36}{35}\frac{64}{63} \cdots$$
+
+Calcule el valor de $\pi$ truncando la productoria a $10^6$ factores.
+\end{itemize}    
+
+%%%%%%%%%%  comienzo guia_c
+\prob{} 
+Escriba un vector cuyas $N$ componentes satisfagan $v[i] = i^2$.
+
+\prob{} 
+Declare un arreglo de n\'umeros flotantes de 64 bits de dimensiones \verb+(50,20)+ en donde la entrada \verb+a[i,j]+ de la fila \verb+i+ y la columna \verb+j+ de \verb+a+ valga \verb+i*j+.
+Escriba secciones de este arreglo representando:
+    
+\begin{itemize}
+\item[a)]
+la primera fila de \verb+a+,
+
+\item[b)]
+la \'ultima columna de \verb+a+, y
+
+\item[c)]
+un elemento de por medio en cada fila y columna de \verb+a+.
+\end{itemize}
+
+\prob{} 
+Escriba un programa, utilizando la instrucci\'on \verb+for+, que multiplique un vector de $N$ elementos, por una matriz de $N \times N$. 
+El programa debe preguntar el valor de $N$ y luego definir los arreglos, y darle valores iniciales tal que, la matriz sea triangular superior, con todos sus elementos igual a 1, excepto los de la diagonal que toman valor 3, el vector tendra todos sus elementos pares igual a 2, y los impares igual a 3. 
+No utilice \verb+do+ ni \verb+for+ para inicializar el vector, ni \verb+do+ ni \verb+for+ anidados para inicializar la matriz.
+Finalmente, calcule el producto matricial de la matriz por el vector e impr\'imalos en pantalla.
+
+\bigskip
+\bigskip
+\newpage
+\subsection*{Ejercicios Complementarios}
+
+\prob{} 
+Un script de Julia es un archivo que contiene c\'odigo Julia. 
+
+\begin{itemize}
+\item[a)]
+Cree un archivo llamado \verb+miscript.jl+ con el siguiente contenido
+
+\begin{verbatim}
+    function maximo(x,y)
+        if x>y
+            return x
+        else
+            return y
+        end
+    end
+\end{verbatim}
+
+\item[b)]
+En una celda de la notebook, ejecute las lineas
+
+\begin{verbatim}
+    include("miscript.jl")
+    println(maximo(1,13))
+\end{verbatim}    
+    
+para incluir y usar las funci\'on declarada en el script en la actual sesi\'on de la notebook.
+
+\item[c)]
+Experimente agregando otras funciones al script. Vuelva a incluir el escript y pruebe si las funciones pueden usarse en la notebook.
+\end{itemize}
+
+\prob{} 
+\begin{itemize}
+\item[a)] 
+Escriba un programa para calcular la posici\'on y la velocidad en funci\'on del tiempo, para un problema de tiro obl\'icuo. 
+Asumiendo que el proyectil parte del origen, debe preguntar el \'angulo (en grados) y la velocidad inicial (en m/seg.). 
+Utilice funciones para calcular la posici\'on y la velocidad.
+
+\item[b)] 
+Grafique la soluci\'on (trayectoria) eligiendo el incremento temporal $\Delta t$ de manera que la gr\'afica tenga 600 puntos y abarque el intervalo entre el disparo y el instante en que el proyectil vuelve a tener altura 0. 
+
+\item[c)] 
+Grafique las componentes de la velocidad en funci\'on del tiempo. 
+\end{itemize}
+
+% 6
+\prob{} 
+Se pretende calcular las sumas $S_N = \sum^N_{k=1} a_k$, donde $N$ es un número natural. 
+Llamemos $S'_N$ al valor num\'ericamente calculado que se logra de hacer $(S_{N-1} + a_N)$ utilizando n\'umeros de punto flotante de 32 bits.
+Sea $S_N =\sum^N_{k=1} \frac{1}{k}$. 
+Mostrar que $S'_N$ se estaciona a partir de alg\'un $N$ suficientemente grande. 
+Deducir que a partir de entonces $S_N \neq S'_{N}$. Hacer un programa que determine el valor a partir del cual $S'_N$ se estaciona.
+
+\prob{} 
+Para calcular un valor aproximado de $\pi$ utilizaremos la siguiente serie infinita alternante:
+
+$$\frac{\pi}{4} = \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1}$$
+
+Recordemos que una cota superior para el error cometido al truncar una serie alternante (de valor absoluto decreciente) est\'a dado por el valor absoluto del primer t\'ermino despreciado. 
+Escriba un programa que ingrese el n\'umero de cifras decimales exactas con que se desea el valor de $\pi$ (entre 1 y 5 cifras) y devuelva en pantalla el n\'umero de t\'erminos que deben incluirse en la serie de arriba para obtener dicha precisi\'on y a rengl\'on siguiente el valor de $\pi$ obtenido de esta forma, truncado el resultado al n\'umero de cifras pedido.
+
+% 
+\prob{} 
+Escribir un programa que pida una contrase\~na de tres d\'igitos y permita
+leer tres intentos.  Si el usuario da la contrase\~na correcta responde
+``Correcto'' y queda inactivo, con este mensaje.  En caso contrario el programa
+escribe ``Lo siento, contrase\~na equivocada'' y se cierra de inmediato.
+
+\prob{} 
+Escribir un programa que, dado un a\~no y el nombre de un mes, {\bf saque por pantalla} el n\'umero de d\'ias del mes (tenga en cuenta que algunos a\~nos son bisiestos).
+
+\prob{} 
+Escriba un programa que genere secuencialmente 10 archivos con nombre de salida diferentes (dependiendo del valor que tome alg\'un par\'ametro). 
+En cada archivo, escriba bajo la forma de dupla 
+
+\verb+    x f(x)+
+    
+una funci\'on evaluada en $N$ puntos y que tambi\'en dependa del par\'ametro (por ejemplo $y = sin(\pi \omega x)$, con $\omega = 1, 2, 3, \ldots$). 
+El loop debe cerrar cada archivo luego de escribir en \'el.
+
+En el mismo programa o en otro, construya otro loop que abra secuencialmente los archivos y que (sin borrar los datos escritos) agregue otros $N$ pares de duplas de la funci\'on.
+
+\end{document}
