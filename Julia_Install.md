@@ -21,16 +21,21 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
 
    en donde vemos, tras presionar la tecla Enter, que Julia imprime el resultado de la instrucción ingresada. Para salir de la cónsola de Julia, ingrese el comando `exit()`.
     
-**1. Editor de texto** Usualmente para trabajar con códigos un poquito complicados es mejor hacerlo usando un editor de texto apropiado (no de texto enriquecido como Word u Open Office). Para linux recomendamos `kate` o `geany`. Para Windows recomendamos [geany](https://www.geany.org/download/nightly-builds/) o [notepad++](https://notepad-plus-plus.org/downloads/v7.9.3/). Veamos un ejemplo. Cree con su editor de texto un archivo llamado `hola.jl` con el siguiente contenido
+**1. Editor de texto** Usualmente para trabajar con códigos un poquito complicados es mejor hacerlo usando un editor de texto apropiado (no de texto enriquecido como Word u Open Office). Para linux recomendamos `kate` o `geany`. Para Windows recomendamos [geany](https://www.geany.org/download/nightly-builds/) o [notepad++](https://notepad-plus-plus.org/downloads/v7.9.3/). Veamos un ejemplo. Inicie una cónsola de Julia e ingrese el comando
+
+    julia> pwd()
+    /home/juan/MetodosNumericos2021
+    
+Vemos que, como resultado, Julia nos indica una carpeta del sistema (Linux en este caso). Dentro de dicha carpeta, cree con su editor de texto un archivo llamado `hola.jl` con el siguiente contenido
 
     println("Hola mundo!")
     
    Luego, inicie la cónsola de Julia e ingrese el siguiente comando
    
-    include("hola.jl")
+    julia> include("hola.jl")
     Hola mundo!
     
-   Vemos que Julia ha ejecutado las instrucciones indicadas en el archivo.
+   Vemos que Julia ha ejecutado las instrucciones indicadas en el archivo. Este comando fallará si el archivo `hola.jl` no se encuentra en la carpeta en la que Julia está trabajando.
     
 **2. Usando notebooks** Una vez que hayan adquirido un poco de experiencia es recomendable usar notebooks. 
     Los notebooks se trabajan en el browser que está configurado como principal es su sistema. 
