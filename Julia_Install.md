@@ -14,7 +14,7 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
 
     julia>
    
-   Aquí, podemos, por ejemplo, ingresar comandos o instrucciones numéricas tales como
+   Aquí podemos, por ejemplo, ingresar comandos o instrucciones numéricas tales como
    
     julia> 1 + 2
     3
