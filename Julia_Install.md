@@ -43,7 +43,7 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
    Para Julia tenemos al menos 3 posibilidades: 
         
    a) `Ijulia`, (**recomendado**) es un notebook similar a Jupyter, pero nativo de Julia. Las instrucciones para su instalació
-        instalación las pueden encontrar [aquí:](https://github.com/JuliaLang/IJulia.jl)
+        instalación las pueden encontrar [aquí:](https://github.com/JuliaLang/IJulia.jl). Alternativamente, lea más abajo.
         
         
    b) `Jupyter`, es muy similar al anterior, pero su instalación es un poquito más compleja. **No lo recomendamos** como primera instalación. Tiene la ventaja que allí se pueden correr códigos en Python. Si ya lo tiene instalado entonces puede usar este directamente de acuerdo a lo que indican [aquí](https://datatofish.com/add-julia-to-jupyter/) (para Windows). Para Linux usar **anaconda** (ver [aquí](https://anaconda.org/)).
