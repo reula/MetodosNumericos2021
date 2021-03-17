@@ -35,7 +35,7 @@ Luego, dentro la cónsola de Julia e ingrese la siguiente instrucción
     julia> include("hola.jl")
     Hola mundo!
     
-   Vemos que Julia ha ejecutado las instrucciones indicadas en el archivo. Este comando fallará si el archivo `hola.jl` no se encuentra en la carpeta en la que Julia está trabajando.
+Como resultado, vemos que Julia ha ejecutado la instrucción indicada en el archivo. Este comando fallará si el archivo `hola.jl` no se encuentra en la carpeta en la que Julia está trabajando.
     
 **2. Usando notebooks** Una vez que hayan adquirido un poco de experiencia es recomendable usar notebooks. 
     Los notebooks se trabajan en el browser que está configurado como principal es su sistema. 
