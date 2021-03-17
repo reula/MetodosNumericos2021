@@ -19,16 +19,16 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
     
 **1. Terminal o cónsola de Julia** Cuando iniciamos Julia, se abre una terminal o cónsola en donde podemos ejecutar comandos de Julia. La terminal de Julia luce algo así
 
-    `julia>`
+    julia>
    
    Aquí, 
     
    Allí podemos, por ejemplo, ingresar comandos o instrucciones numéricas tales como
    
-    julia> 1 + 2`
+    julia> 1 + 2
     3
 
-   en donde vemos, tras presionar la tecla Enter, Julia imprime el resultado de la instrucción ingresada. Para salir de la cónsola de Julia, ingrese el comando `exit()`.
+   en donde vemos, tras presionar la tecla Enter, Julia imprime el resultado de la instrucción ingresada. Para salir de la cónsola de Julia, ingrese el comando `exit()` en la cónsola.
     
 **1. Editor de texto** Usualmente para trabajar con códigos un poquito complicados es mejor hacerlo usando un editor de texto apropiado (no de texto enriquecido como Word u Open Office). Para linux recomendamos `kate` o `geany`. Para Windows recomendamos [geany](https://www.geany.org/download/nightly-builds/) o [notepad++](https://notepad-plus-plus.org/downloads/v7.9.3/). Veamos un ejemplo. Cree con su editor de texto un archivo llamado `hola.jl` con el siguiente contenido
 
