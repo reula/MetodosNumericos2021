@@ -26,7 +26,7 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
     julia> pwd()
     /home/juan/MetodosNumericos2021
     
-Vemos que, como resultado, Julia nos indica una carpeta del sistema (Linux en este caso). Dentro de dicha carpeta, cree con su editor de texto un archivo llamado `hola.jl` con el siguiente contenido
+Como resultado, vemos que Julia nos indica la carpeta del sistema (Linux en este caso) en la que está trabajando. Dentro de dicha carpeta, cree con su editor de texto un archivo llamado `hola.jl` con el siguiente contenido
 
     println("Hola mundo!")
     
