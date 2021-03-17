@@ -30,7 +30,7 @@ Como resultado, vemos que Julia nos indica la carpeta del sistema (Linux en este
 
     println("Hola mundo!")
     
-   Luego, inicie la cónsola de Julia e ingrese el siguiente comando
+Luego, dentro la cónsola de Julia e ingrese la siguiente instrucción
    
     julia> include("hola.jl")
     Hola mundo!
