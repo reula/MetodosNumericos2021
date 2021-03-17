@@ -53,7 +53,7 @@ Hay varias maneras de trabajar a la hora de escribir programas de cierta complej
         instalación las pueden encontrar [aquí:](https://github.com/JuliaLang/IJulia.jl)
         
         
-   b) `Jupyter`, es muy similar al anterior, pero su instalación es un poquito más compleja. **No lo recomendamos** como primera instalación. Tiene la ventaja que allí se pueden correr códigos en Python. Si ya lo tiene instalado entonces puede usar este directamente de acuerdo a lo que indican [aquí](https://datatofish.com/add-julia-to-jupyter/) (para Windows). Para Linux usar **anaconda** [aquí](https://anaconda.org/).
+   b) `Jupyter`, es muy similar al anterior, pero su instalación es un poquito más compleja. **No lo recomendamos** como primera instalación. Tiene la ventaja que allí se pueden correr códigos en Python. Si ya lo tiene instalado entonces puede usar este directamente de acuerdo a lo que indican [aquí](https://datatofish.com/add-julia-to-jupyter/) (para Windows). Para Linux usar **anaconda** (ver [aquí](https://anaconda.org/)).
         
    c) `Pluto`, es un nuevo tipo de notebook que es muy intersante y tiene varias ventajas sobre los otros. Pero estas ventajas también lo hacen complicado para personas con poca experiencia en la escritura de códigos. Por lo tanto **No lo recomendamos**. 
    De todos modos, las instrucciones para instalarlos están [aquí](https://github.com/fonsp/Pluto.jl)
