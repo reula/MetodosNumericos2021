@@ -4,7 +4,7 @@ Aqui daremos las instrucciones para instalar Julia y otros accesorios.
 
 ### Instalando Julia:
 
-La instalación de los binarios de Julia es bastante sencilla. Primero, vaya [aquí](https://julialang.org/downloads/). Allí elija la instalación de acuerdo al sistema operativo de su computadora, MacOS, Windows o Linux, y si es de 32bits o 64bits. Hoy en día casi todas las computadoras ya son de 64 bits, pero por las dudas constate si no es de 32 bits. Para saber si su computadora es de 32 o 64 bits en Windows vea [aquí](https://support.microsoft.com/es-es/windows/windows-de-32-y-64-bits-preguntas-frecuentes-c6ca9541-8dce-4d48-0415-94a3faa2e13d). Para saber si su computadora es de 32 o 64 bits en Linux, ingrese en una terminal de bash el comando
+La instalación de los binarios de Julia es bastante sencilla. Vaya [aquí](https://julialang.org/downloads/) y elija la version **Current stable release: v1.5.4 (March 11, 2021)** y el método de instalación de acuerdo al sistema operativo (Windows, Linux, MacOS, etc) y la arquitectura (32 bits o 64 bits) de su computadora. Hoy en día casi todas las computadoras ya son de 64 bits, pero por las dudas constate si no es de 32 bits. Para saber si su computadora es de 32 o 64 bits en Windows vea [aquí](https://support.microsoft.com/es-es/windows/windows-de-32-y-64-bits-preguntas-frecuentes-c6ca9541-8dce-4d48-0415-94a3faa2e13d). Para saberlo en Linux, ingrese en una terminal de bash el comando
 
         juan@cachalote$ uname -m
         x86_64
