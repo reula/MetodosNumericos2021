@@ -9,7 +9,7 @@ La instalación de los binarios de Julia es bastante sencilla. Vaya [aquí](http
         juan@cachalote$ uname -m
         x86_64
         
-o googlee de acuerdo a su distribución de Linux.
+Vemos en este ejemplo, que la arquitectura del procesador de la computadora de Juan es X86 de 64 bits. Alternativamente, googlee de acuerdo a su distribución de Linux.
         
 ### Trabajando con Julia
 
