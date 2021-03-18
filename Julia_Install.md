@@ -69,8 +69,8 @@ Como resultado, vemos que Julia ha ejecutado la instrucción indicada en el arch
  Veremos una larga lista de mensajes que Julia irá emitiendo a medida que se instalan las componentes necesarias del paquete IJulia.
  A continuación activaremos una notebook de IJulia. Para ello, ingrese las instrucciones
 
-    using IJulia
-    notebook()
+    julia> using IJulia
+    julia> notebook()
     
 La primera vez que ejecute estos comandos Julia utilizará un tiempo apreciable para completar la configuración y el compilado del paquete instalado (IJulia en este caso). En particular, la primera vez le preguntará si desea instalar **Jupyter**. Si no lo tiene ya instalado, acceda a ello. En tal caso instalará otro paquete, llamado `Conda.jl`. 
 Una vez completado el proceso le debería aparecer una página en su browser donde podrá comenzar a trabajar con su notebook.
