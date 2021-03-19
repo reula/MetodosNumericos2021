@@ -4,7 +4,12 @@ Aqui daremos las instrucciones para instalar Julia y otros accesorios.
 
 ### Instalando Julia:
 
-La instalación de los binarios de Julia es bastante sencilla. Primero, vaya a la [página:](https://julialang.org/downloads/). Allí elija la instalación de acuerdo al sistema operativo de su computadora. Hoy en día casi todas las computadoras ya son de 64bits, pero por las dudas constate si no es de 32 bits, en tal caso use el apropiado. Siga las instrucciones de instalación de acuerdo a su sistema.
+La instalación de los binarios de Julia es bastante sencilla. Vaya [aquí](https://julialang.org/downloads/) y elija la version **Current stable release: v1.5.4 (March 11, 2021)** y el método de instalación de acuerdo al sistema operativo (Windows, Linux, MacOS, etc) y la arquitectura (32 bits o 64 bits) de su computadora. Hoy en día casi todas las computadoras ya son de 64 bits, pero por las dudas constate si no es de 32 bits. Para saber si su computadora es de 32 o 64 bits en Windows vea [aquí](https://support.microsoft.com/es-es/windows/windows-de-32-y-64-bits-preguntas-frecuentes-c6ca9541-8dce-4d48-0415-94a3faa2e13d). Para saberlo en Linux, ingrese en una terminal de bash el comando
+
+        juan@cachalote$ uname -m
+        x86_64
+        
+Vemos en este ejemplo, que la arquitectura del procesador de la computadora de Juan es X86 de 64 bits. Alternativamente, googlee de acuerdo a su distribución de Linux.
         
 ### Trabajando con Julia
 
@@ -64,8 +69,8 @@ Como resultado, vemos que Julia ha ejecutado la instrucción indicada en el arch
  Veremos una larga lista de mensajes que Julia irá emitiendo a medida que se instalan las componentes necesarias del paquete IJulia.
  A continuación activaremos una notebook de IJulia. Para ello, ingrese las instrucciones
 
-    using IJulia
-    notebook()
+    julia> using IJulia
+    julia> notebook()
     
 La primera vez que ejecute estos comandos Julia utilizará un tiempo apreciable para completar la configuración y el compilado del paquete instalado (IJulia en este caso). En particular, la primera vez le preguntará si desea instalar **Jupyter**. Si no lo tiene ya instalado, acceda a ello. En tal caso instalará otro paquete, llamado `Conda.jl`. 
 Una vez completado el proceso le debería aparecer una página en su browser donde podrá comenzar a trabajar con su notebook.
