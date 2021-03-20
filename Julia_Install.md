@@ -61,7 +61,7 @@ Como resultado, vemos que Julia ha ejecutado la instrucción indicada en el arch
    
  ## Instalando IJulia
  
- Para ello debe instalar el *paquete* con el código necesario. Para ello, inicue unaa consola de Julia e ingrese las siguientes instrucciones
+ IJulia es un *paquete* (o librería) que debemos instalar. A la fecha, Julia consta con más de 4000 paquetes en sus repositorios. Los paquetes son, básicamente, programas o utilidades contribuídas por otros usuarios de la comunidad que nos permiten ampliar las capacidades que ofrece la instalación básica de Julia. Para instalar IJulia, inicie unaa cónsola de Julia e ingrese las siguientes instrucciones
  
     julia> using Pkg
     julia> Pkg.add("IJulia")
