@@ -66,8 +66,7 @@ Como resultado, vemos que Julia ha ejecutado la instrucción indicada en el arch
     julia> using Pkg
     julia> Pkg.add("IJulia")
 
- Veremos una larga lista de mensajes que Julia irá emitiendo a medida que se instalan las componentes necesarias del paquete IJulia.
- A continuación activaremos una notebook de IJulia. Para ello, ingrese las instrucciones
+ Veremos una larga lista de mensajes que Julia irá emitiendo a medida que se instalan las componentes necesarias del paquete IJulia. Si la instalación ha resultado exitosa, a continuación activaremos el administrador de notebooks de IJulia. Para ello, ingrese las instrucciones
 
     julia> using IJulia
     julia> notebook()
