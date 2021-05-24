@@ -273,7 +273,7 @@
     
 
     \begin{document}
-    \date{Lunes 17 de Mayo}
+    \date{Lunes 17 de Mayo}    
     
     
     \maketitle
@@ -284,15 +284,23 @@
     \hypertarget{problema-1}{%
 \section*{Problema 1}\label{problema-1}}
 
-Sea \(f(x) = x e^x\). Aproxime \(f^\prime (2)\) mediante la
-\emph{fórmula centrada de tres puntos} \[
+Defina una función, que, dada una función, un punto y un intervalo,
+retorne una aproximación a la derivada de la función dada, evaluada en
+el punto dado, utilizando la fórmula de diferencias finitas que se
+deriva de la siguiente aproximación (\emph{fórmula centrada de tres
+puntos}):
+
+\[
 f^\prime(x) = \frac{f(x+h) - f(x-h)}{2h} + \mathcal{O}(h^2)
-\] para distintos valores de \(h\) y calcule el incremento óptimo
-\(h_o\) teniendo en cuenta los errores de truncamiento y redondeo.
-Usando la diferencia entre \(f'(2)\) (calculado en Julia usando las
-funciones matemáticas incorporadas) y el valor de la aproximación
-mencionada, grafique en escala \emph{log-log} el error versus \(h\) para
-\(h = 10^{-k}\) con \(k\) entero.
+\]
+
+Utilize dicha función para evaluar la derivada de la función
+\(f(x) = x e^x\) en el punto \(x=2\) para distintos valores de \(h\) y
+calcule el incremento óptimo \(h_o\) teniendo en cuenta los errores de
+truncamiento y redondeo. Usando la diferencia entre \(f'(2)\) (calculado
+en Julia usando las funciones matemáticas incorporadas) y el valor de la
+aproximación mencionada, grafique en escala \emph{log-log} el error
+versus \(h\) para \(h = 10^{-k}\) con \(k\) entero.
 
     \hypertarget{problema-2}{%
 \section*{Problema 2}\label{problema-2}}
@@ -302,17 +310,24 @@ Para funciones \(f(x)\) que son suficientemente diferenciables en
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
 \item
   Muestre que se puede aproximar \(f'(c)\) con la \emph{fórmula centrada
   de 5 puntos} \[
-  f'(c)\,=\,\frac{1}{12 h} \left(f(c-2 h)-8 f(c-h)+8 f(c+h)-f(c+2 h)
-  \right)\,+\,O(h^4)
+  D_5f(c) := \,\frac{1}{12 h} \left(f(c-2 h)-8 f(c-h)+8 f(c+h)-f(c+2 h)
+  \right)
   \]
 \item
   Muestre que la aproximación es exacta para polinomios de grado
-  \(\le 4\).
+  \(\le 4\). \emph{Ayuda:} calcule explícitamente el término expresado
+  como \(O(h^4)\) en la ecuación siguiente, usando una expansión en
+  serie de Taylor alrededor de \(x=c\) de todas las evaluaciones de la
+  función que aparecen en la fórmula para \(D_5f(c)\).
 \end{enumerate}
+
+\[
+f'(c)\,=\,\frac{1}{12 h} \left(f(c-2 h)-8 f(c-h)+8 f(c+h)-f(c+2 h)
+\right)\,+\,O(h^4)
+\]
 
     \hypertarget{problema-3}{%
 \section*{Problema 3}\label{problema-3}}
@@ -320,13 +335,17 @@ Para funciones \(f(x)\) que son suficientemente diferenciables en
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Implemente el cálculo aproximado de las derivadas de \(f(x)=\cos x\) y
-  \(g(x)=e^x\) utilizando las fórmulas \emph{i) hacia adelante de 2 puntos}, 
-  \emph{ii) centrada de 3 puntos} y \emph{iii) centrada de 5 puntos}.
+  Implemente el cálculo aproximado de las derivadas de una función
+  arbitraria utilizando las fórmulas \emph{i) hacia adelante de 2
+  puntos}, \emph{ii) centrada de 3 puntos} y \emph{iii) centrada de 5
+  puntos}.
+\item
+  Aplíquelas para obtener los valores aproximados de las derivadas de
+  \(f(x)=\cos x\) y \(g(x)=e^x\).
 \item
   Haga un gráfico \emph{log-log} del error relativo \(E\) vs \(h\) para
-  \(h\in [\epsilon_m(x),0.1]\) y $x=0.1, 1, 100$. Aquí $\epsilon_m(x)$ es la 
-  precisión de la máquina al valor $x$.
+  \(h\in [\epsilon_m(x),0.1]\) y \(x=0.1, 1, 100\). Aquí
+  \(\epsilon_m(x)\) es la precisión de la máquina al valor \(x\).
 \item
   Verifique si el número de cifras decimales que obtiene coincide con
   las estimaciones presentadas en el téorico.
@@ -335,8 +354,6 @@ Para funciones \(f(x)\) que son suficientemente diferenciables en
   error de redondeo, respectivamente. Las pendientes que se observan,
   corresponden a las predichas en el teórico?
 \end{enumerate}
-
-
 
     \hypertarget{problema-4}{%
 \section*{Problema 4}\label{problema-4}}
@@ -358,6 +375,21 @@ posición, \(x(t_i)\).
 \item
   Repita el punto 1. utilizando las fórmulas de 5 puntos.
 \end{enumerate}
+
+\textbf{Ayuda:} Para cargar los datos utilice:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{t} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{p}{)}
+        \PY{n}{x} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{p}{)}
+        \PY{n}{open}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{.}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{k}{do} \PY{n}{fh}
+            \PY{k}{for} \PY{n}{line} \PY{k+kp}{in} \PY{n}{readlines}\PY{p}{(}\PY{n}{fh}\PY{p}{)} 
+                \PY{n}{cols} \PY{o}{=} \PY{n}{split}\PY{p}{(}\PY{n}{line}\PY{p}{)}
+                \PY{n}{push!}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{parse}\PY{p}{(}\PY{k+kt}{Float64}\PY{p}{,}\PY{n}{cols}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                \PY{n}{push!}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{parse}\PY{p}{(}\PY{k+kt}{Float64}\PY{p}{,}\PY{n}{cols}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{k}{end}
+        \PY{k}{end}
+\end{Verbatim}
+
 
     \hypertarget{ejercicios-complementarios}{%
 \section*{Ejercicios Complementarios}\label{ejercicios-complementarios}}
