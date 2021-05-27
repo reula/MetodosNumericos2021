@@ -273,15 +273,24 @@
     
 
     \begin{document}
-    \date{Lunes 25 de Mayo}
+    \date{Lunes 25 de Mayo}    
     
     \maketitle
     
     
 
     
+%    \hypertarget{guuxeda-6-muxe9todos-numuxe9ricos-2021}{%
+%\section{Guía 6 Métodos Numéricos
+%2021}\label{guuxeda-6-muxe9todos-numuxe9ricos-2021}}
+
+%    \begin{Verbatim}[commandchars=\\\{\}]
+%{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{Plots}
+%\end{Verbatim}
+
+
     \hypertarget{problema-1}{%
-\section*{Problema 1}\label{problema-1}}
+\subsection{Problema 1}\label{problema-1}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -311,7 +320,7 @@ trapecio} y \emph{iii) Simpson}.
 \end{enumerate}
 
     \hypertarget{problema-2}{%
-\section*{Problema 2}\label{problema-2}}
+\subsection{Problema 2}\label{problema-2}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -331,7 +340,7 @@ trapecio} y \emph{iii) Simpson}.
 \end{enumerate}
 
     \hypertarget{problema-3}{%
-\section*{Problema 3}\label{problema-3}}
+\subsection{Problema 3}\label{problema-3}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -372,7 +381,7 @@ intervalos. Incluya en la función para dicho método un chequeo de que el
 número de puntos sea par.
 
     \hypertarget{problema-4}{%
-\section*{Problema 4}\label{problema-4}}
+\subsection{Problema 4}\label{problema-4}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -398,37 +407,35 @@ número de puntos sea par.
 \end{enumerate}
 
     \hypertarget{problema-5}{%
-\section*{Problema 5}\label{problema-5}}
+\section{Problema 5}\label{problema-5}}
 
 \textbf{Comparación de métodos.}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Empleando los algoritmos del problema 3, aproxime la integral
-  \begin{equation*}
+  Aproxime la integral \begin{equation*}
   I = \int_0^1 e^{-t} dt = 1 - e^{-1}  \nonumber              
-  \end{equation*}
+  \end{equation*} empleando los algoritmos del problema 3.
 \item
-  Calcule el error relativo \(E\) para distintos valores del número de
-  puntos de integración, \(n\). Considere valores de \(n\) consecutivos
-  hasta 100, y luego de 100 en 100 hasta \(n=3000\). Grafique \(E\) vs
-  \(n\) en \emph{log-log} para verificar que \[
-  E \propto n^\alpha
-  \]
+  Calcule el error relativo \(E\) para \(n\in [2,4,8,...,4096]\)
+  (\(n=2^i\) con \(i=1,2,...\)) y grafique \(E\) vs \(n\) en
+  \emph{log-log}.
 \item
-  Estime los exponentes \(\alpha\) de las leyes de potencia observadas.
+  Verifique visualmente que se satisfacen leyes de potencia \[
+  E = Cn^{-\alpha}
+  \] y estime visualmente los valores de \(C>0\) y \(\alpha>0\).
 \item
-  Use el gráfico para estimar las leyes de potencia de la dependencia
-  del error con el número de puntos \(n\) y para determinar el número
-  cifras decimales de precisión en cada método. Haga esto tanto para el
-  error del algoritmo como para el de redondeo.
+  Use el gráfico para estimar, para cada método, el mínimo \(n\) al cuál
+  se alcanza una precisión \(E<10^{-7}\).
 \item
-  Repita los incisos anteriores en \texttt{Float32}.
+  Repita los incisos anteriores en \texttt{Float16} y \texttt{Float32}.
+\item
+  Determine si el error de redondeo es relevante en estos casos.
 \end{enumerate}
 
     \hypertarget{problema-6}{%
-\section*{Problema 6}\label{problema-6}}
+\subsection{Problema 6}\label{problema-6}}
 
 En el repositorio
 
@@ -458,15 +465,16 @@ rango de \(t\). El primero muestrea \(n=629\) puntos y el segundo
   Integre los muestreos y compare.
 \end{enumerate}
 
-    \hypertarget{tutorial-bajando-archivos-desde-una-notebook-de-julia}{%
-\subsection*{Tutorial: bajando archivos desde una notebook de
-Julia}\label{tutorial-bajando-archivos-desde-una-notebook-de-julia}}
+    \textbf{Ayuda:} Para bajar el archivo \texttt{mediciones1-c1-g6.dat} del
+repositorio de github desde julia realice:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{} Ejemplo de como bajar un archivo.}
+        \PY{n}{separador} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{/}\PY{l+s}{\PYZdq{}} \PY{c}{\PYZsh{} En Linux}
+        \PY{c}{\PYZsh{}separador = \PYZdq{}\PYZbs{}\PYZdq{} \PYZsh{} En Windows}
         \PY{n}{download}\PY{p}{(}
-            \PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{p}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{/}\PY{l+s}{/}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{w}\PY{l+s}{.}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{u}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{.}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{/}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{N}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{2}\PY{l+s}{0}\PY{l+s}{2}\PY{l+s}{1}\PY{l+s}{/}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{/}\PY{l+s}{G}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{/}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{1}\PY{l+s}{\PYZhy{}}\PY{l+s}{c}\PY{l+s}{1}\PY{l+s}{\PYZhy{}}\PY{l+s}{g}\PY{l+s}{6}\PY{l+s}{.}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{c}{\PYZsh{} Bajamos el archivo pos.dat del repositorio en el que están las guías.}
-            \PY{n}{pwd}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{l+s}{\PYZdq{}}\PY{l+s}{/}\PY{l+s}{\PYZdq{}} \PY{o}{*} \PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{1}\PY{l+s}{\PYZhy{}}\PY{l+s}{c}\PY{l+s}{1}\PY{l+s}{\PYZhy{}}\PY{l+s}{g}\PY{l+s}{6}\PY{l+s}{.}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}} \PY{c}{\PYZsh{} Guardamos pos.dat en un archivo llamado mediciones1\PYZhy{}c1\PYZhy{}g6.dat en el directorio local.}
+            \PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{p}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{/}\PY{l+s}{/}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{w}\PY{l+s}{.}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{u}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{.}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{/}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{N}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{2}\PY{l+s}{0}\PY{l+s}{2}\PY{l+s}{1}\PY{l+s}{/}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{/}\PY{l+s}{G}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{/}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{1}\PY{l+s}{\PYZhy{}}\PY{l+s}{c}\PY{l+s}{1}\PY{l+s}{\PYZhy{}}\PY{l+s}{g}\PY{l+s}{6}\PY{l+s}{.}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{c}{\PYZsh{} Bajamos el archivo mediciones1\PYZhy{}c1\PYZhy{}g6.dat del repositorio en el que están las guías.}
+            \PY{n}{pwd}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{n}{separador} \PY{o}{*} \PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{1}\PY{l+s}{\PYZhy{}}\PY{l+s}{c}\PY{l+s}{1}\PY{l+s}{\PYZhy{}}\PY{l+s}{g}\PY{l+s}{6}\PY{l+s}{.}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}} \PY{c}{\PYZsh{} Guardamos lo bajado en un archivo llamado mediciones1\PYZhy{}c1\PYZhy{}g6.dat en el directorio local.}
         \PY{p}{)}
 \end{Verbatim}
 
@@ -474,32 +482,32 @@ Julia}\label{tutorial-bajando-archivos-desde-una-notebook-de-julia}}
     \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Tenga en cuenta que en Windows debe cambiar \texttt{"/"} por
-  \texttt{"\textbackslash{}"}!}
+  \textbf{Notar que Windows usa \texttt{"\textbackslash{}"} en vez de
+  \texttt{"/"}.}
 \item
   Cuando entre a github a ver los links a los archivos, seleccione
   primero el archivo, cuando se visualice selecione el botón
-  \textbf{RAW}. Fíjese que el link debe comenzar con
+  \textbf{Raw}. Fíjese que el link debe comenzar con
   https://raw.githubusercontent.com
 \end{enumerate}
 
     \hypertarget{ejercicios-complementarios}{%
-\section*{Ejercicios Complementarios}\label{ejercicios-complementarios}}
+\section{Ejercicios Complementarios}\label{ejercicios-complementarios}}
 
     \hypertarget{problema-c.1}{%
-\subsection*{Problema C.1}\label{problema-c.1}}
+\subsection{Problema C.1}\label{problema-c.1}}
 
 Idem problema 4, para las siguientes integrales: 1.
 \(\int_{1/2}^1 x^4 dx\) 2. \(\int_0^{\pi/4} x \sin x dx\)
 
     \hypertarget{problema-c.2}{%
-\subsection*{Problema C.2}\label{problema-c.2}}
+\subsection{Problema C.2}\label{problema-c.2}}
 
 \textbf{Integración numérica en dos dimensiones} 1. Haga un programa que
 integre funciones en la region \(a\le x \le b\,;\;c \le y \le d\)
 siguiendo el código delineado en la clase teórica, usando el método de
-cuadratura de Simpson en cada coordenada. 2. Evalue numericamente con no
-menos de 8 cifras significativas las integrales \[
+cuadratura de Simpson en cada coordenada. 2. Evalue nume ricamente con
+no menos de 8 cifras significativas las integrales \[
 \int_0^2\,dx\, \int_0^1\,dy\, e^{-x\,y} \;\;\;\;\;\;\;\;\;\;\;\;\;\;
 \int_{7/5}^2\,dx\, \int_1^{3/2}\,dy\, \ln{(x+2 y)}
 \] 3. Modifique el programa para permitir que los límites de integración
