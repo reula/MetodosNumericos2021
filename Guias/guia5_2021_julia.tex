@@ -275,14 +275,22 @@
     \begin{document}
     \date{Lunes 17 de Mayo}    
     
-    
     \maketitle
     
     
 
     
+%    \hypertarget{guuxeda-5-muxe9todos-numuxe9ricos-2021}{%
+%\section*{Guía 5 Métodos Numéricos
+%2021}\label{guuxeda-5-muxe9todos-numuxe9ricos-2021}}
+
+%    \begin{Verbatim}[commandchars=\\\{\}]
+%{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{Plots}
+%\end{Verbatim}
+
+
     \hypertarget{problema-1}{%
-\section*{Problema 1}\label{problema-1}}
+\subsection*{Problema 1}\label{problema-1}}
 
 Defina una función, que, dada una función, un punto y un intervalo,
 retorne una aproximación a la derivada de la función dada, evaluada en
@@ -303,7 +311,7 @@ aproximación mencionada, grafique en escala \emph{log-log} el error
 versus \(h\) para \(h = 10^{-k}\) con \(k\) entero.
 
     \hypertarget{problema-2}{%
-\section*{Problema 2}\label{problema-2}}
+\subsection*{Problema 2}\label{problema-2}}
 
 Para funciones \(f(x)\) que son suficientemente diferenciables en
 \(x=c\)
@@ -330,7 +338,7 @@ f'(c)\,=\,\frac{1}{12 h} \left(f(c-2 h)-8 f(c-h)+8 f(c+h)-f(c+2 h)
 \]
 
     \hypertarget{problema-3}{%
-\section*{Problema 3}\label{problema-3}}
+\subsection*{Problema 3}\label{problema-3}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -356,7 +364,7 @@ f'(c)\,=\,\frac{1}{12 h} \left(f(c-2 h)-8 f(c-h)+8 f(c+h)-f(c+2 h)
 \end{enumerate}
 
     \hypertarget{problema-4}{%
-\section*{Problema 4}\label{problema-4}}
+\subsection*{Problema 4}\label{problema-4}}
 
 En el archivo \texttt{pos.dat} que se encuentra en el repositorio se
 dispone de un conjunto de datos experimentales de la posición de un
@@ -376,7 +384,34 @@ posición, \(x(t_i)\).
   Repita el punto 1. utilizando las fórmulas de 5 puntos.
 \end{enumerate}
 
-\textbf{Ayuda:} Para cargar los datos utilice:
+    \textbf{Ayuda:} Para bajar el archivo \texttt{pos.dat} del repositorio
+de github desde julia realice:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{} Ejemplo de como bajar un archivo.}
+        \PY{n}{separador} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{/}\PY{l+s}{\PYZdq{}} \PY{c}{\PYZsh{} En Linux}
+        \PY{c}{\PYZsh{}separador = \PYZdq{}\PYZbs{}\PYZdq{} \PYZsh{} En Windows}
+        \PY{n}{download}\PY{p}{(}
+            \PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{p}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{/}\PY{l+s}{/}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{w}\PY{l+s}{.}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{u}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{.}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{/}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{N}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{2}\PY{l+s}{0}\PY{l+s}{2}\PY{l+s}{1}\PY{l+s}{/}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{/}\PY{l+s}{G}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{/}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{.}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{c}{\PYZsh{} Bajamos el archivo pos.dat del repositorio en el que están las guías.}
+            \PY{n}{pwd}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{n}{separador} \PY{o}{*} \PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{.}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}} \PY{c}{\PYZsh{} Guardamos lo bajado en un archivo llamado pos.dat en el directorio local.}
+        \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Notar que Windows usa \texttt{"\textbackslash{}"} en vez de
+  \texttt{"/"}.}
+\item
+  Cuando entre a github a ver los links a los archivos, seleccione
+  primero el archivo, cuando se visualice selecione el botón
+  \textbf{Raw}. Fíjese que el link debe comenzar con
+  https://raw.githubusercontent.com
+\end{enumerate}
+
+    \textbf{Ayuda:} Para cargar los datos en \texttt{pos.dat} a vectores de
+Julia utilice:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor} }]:} \PY{n}{t} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{p}{)}
