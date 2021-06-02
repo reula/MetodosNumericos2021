@@ -1,0 +1,588 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Guía 7, 2021, Julia}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+     \date{Miércoles 2 de Junio}     
+    
+    \maketitle
+    
+    
+
+    
+%    \hypertarget{guuxeda-7-muxe9todos-numuxe9ricos-2021}{%
+%\section*{Guía 7 Métodos Numéricos
+%2021}\label{guuxeda-7-muxe9todos-numuxe9ricos-2021}}
+
+%    \begin{Verbatim}[commandchars=\\\{\}]
+%{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{Plots}
+%\end{Verbatim}
+
+
+    \hypertarget{problema-1}{%
+\subsection*{Problema 1}\label{problema-1}}
+
+Escriba funciones que permitan realizar un paso de integración de la
+ecuación,
+
+\[
+\frac{dy}{dt} = f(t,y,p),\;\;\;\;\;\; a\leq t \leq b,\;\;\;\;\; y(a) = \alpha
+\]
+
+de una función arbitraria \(f(t,x,p)\) de acuerdo a los métodos de
+Euler, y Runge Kutta de 2° orden (RK2) y Runge Kutta de 4° orden (RK4).
+Las funciones deben admitir como variables: \(f(t,x,p)\), \(x_0\) (el
+valor inicial), \(t_0\) y \(h\) (el paso de integración), el campo \(p\)
+es para permitir parámetros en la función. Cada función debe retornar el
+valor de la variable luego del paso de integración, es decir la
+aproximación a \(x(t + h)\).
+
+Utilizando estas funciones escriba otra función que permita hacer,
+tomando como variable cualquiera de los métodos, la integración de una
+función genérica en un intervalo \([a,b]\) arbitrario. Esta función
+deberá admitir como variables, además de las anteriores, la función de
+un paso de cada método, y el intervalo de integración. La función debe
+retornar dos vectores, uno con los valores \(t_i = t_0 + i*h\) y otro
+con los valores aproximados de \(x_i \approx x(t_i)\).
+
+\textbf{Ayuda:} Dejamos como ejemplo la implementación del método de
+Euler.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{E}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{(}\PY{l+s}{f}\PY{l+s}{,}\PY{l+s}{y}\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{t}\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{h}\PY{l+s}{,}\PY{l+s}{p}\PY{l+s}{)}
+        
+        \PY{l+s}{H}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{m}\PY{l+s}{é}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{E}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{x}\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{í}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{:}\PY{l+s}{ }
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{ó}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{(}\PY{l+s}{y}\PY{l+s}{,}\PY{l+s}{t}\PY{l+s}{,}\PY{l+s}{p}\PY{l+s}{)}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{y}\PY{l+s}{0}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{l}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{0}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{l}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{h}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{t}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{p}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{.}
+        
+        \PY{l+s}{\PYZsh{}}\PY{l+s}{ }\PY{l+s}{E}\PY{l+s}{x}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{s}
+        \PY{l+s}{`}\PY{l+s}{`}\PY{l+s}{`}\PY{l+s}{j}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZhy{}}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{p}\PY{l+s}{l}
+        \PY{l+s}{j}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZgt{}}\PY{l+s}{ }
+        \PY{l+s}{f}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{(}\PY{l+s}{y}\PY{l+s}{,}\PY{l+s}{t}\PY{l+s}{,}\PY{l+s}{p}\PY{l+s}{)}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{\PYZhy{}}\PY{l+s}{p}\PY{l+s}{[}\PY{l+s}{1}\PY{l+s}{]}\PY{l+s}{*}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{+}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{(}\PY{l+s}{2}\PY{l+s}{π}\PY{l+s}{*}\PY{l+s}{t}\PY{l+s}{)}\PY{l+s}{ }\PY{l+s}{+}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{[}\PY{l+s}{2}\PY{l+s}{]}
+        \PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{d}
+        \PY{l+s}{h}\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{0}\PY{l+s}{.}\PY{l+s}{1}
+        \PY{l+s}{E}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{(}\PY{l+s}{f}\PY{l+s}{,}\PY{l+s}{1}\PY{l+s}{,}\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{h}\PY{l+s}{,}\PY{l+s}{[}\PY{l+s}{1}\PY{l+s}{,}\PY{l+s}{2}\PY{l+s}{]}\PY{l+s}{)}
+        \PY{l+s}{1}\PY{l+s}{.}\PY{l+s}{1}
+        \PY{l+s}{`}\PY{l+s}{`}\PY{l+s}{`}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{Euler}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{y0}\PY{p}{,}\PY{n}{t0}\PY{p}{,}\PY{n}{h}\PY{p}{,}\PY{n}{p}\PY{p}{)}
+            \PY{k}{return} \PY{n}{y0} \PY{o}{+} \PY{n}{h}\PY{o}{*}\PY{n}{f}\PY{p}{(}\PY{n}{y0}\PY{p}{,}\PY{n}{t0}\PY{p}{,}\PY{n}{p}\PY{p}{)}
+        \PY{k}{end}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{O}\PY{l+s}{D}\PY{l+s}{E}\PY{l+s}{p}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{(}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{,}\PY{l+s}{f}\PY{l+s}{,}\PY{l+s}{y}\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{,}\PY{l+s}{N}\PY{l+s}{,}\PY{l+s}{p}\PY{l+s}{)}\PY{l+s}{ }
+        
+        \PY{l+s}{H}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{v}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{ó}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{u}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{ó}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{(}\PY{l+s}{y}\PY{l+s}{,}\PY{l+s}{t}\PY{l+s}{)}\PY{l+s}{ }\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{.}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{g}\PY{l+s}{ú}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{m}\PY{l+s}{é}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{g}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{ó}\PY{l+s}{n}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{j}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{E}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{(}\PY{l+s}{f}\PY{l+s}{,}\PY{l+s}{y}\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{t}\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{h}\PY{l+s}{)}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{ó}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{(}\PY{l+s}{y}\PY{l+s}{,}\PY{l+s}{t}\PY{l+s}{)}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{y}\PY{l+s}{0}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{l}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{(}\PY{l+s}{t}\PY{l+s}{\PYZus{}}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{\PYZus{}}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{)}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{N}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{ú}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{s}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{á}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{p}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{s}
+        
+        \PY{l+s}{\PYZsh{}}\PY{l+s}{ }\PY{l+s}{E}\PY{l+s}{x}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{s}
+        \PY{l+s}{`}\PY{l+s}{`}\PY{l+s}{`}\PY{l+s}{j}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZhy{}}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{p}\PY{l+s}{l}
+        \PY{l+s}{j}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZgt{}}\PY{l+s}{ }
+        \PY{l+s}{f}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{(}\PY{l+s}{y}\PY{l+s}{,}\PY{l+s}{t}\PY{l+s}{,}\PY{l+s}{p}\PY{l+s}{)}
+        \PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{ }\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{\PYZhy{}}\PY{l+s}{p}\PY{l+s}{[}\PY{l+s}{1}\PY{l+s}{]}\PY{l+s}{*}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{+}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{(}\PY{l+s}{2}\PY{l+s}{π}\PY{l+s}{*}\PY{l+s}{t}\PY{l+s}{)}\PY{l+s}{ }\PY{l+s}{+}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{[}\PY{l+s}{2}\PY{l+s}{]}
+        \PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{d}
+        \PY{l+s}{y}\PY{l+s}{0}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{0}\PY{l+s}{.}\PY{l+s}{0}
+        \PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{(}\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{1}\PY{l+s}{)}
+        \PY{l+s}{t}\PY{l+s}{,}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{O}\PY{l+s}{D}\PY{l+s}{E}\PY{l+s}{p}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{(}\PY{l+s}{E}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{,}\PY{l+s}{f}\PY{l+s}{,}\PY{l+s}{y}\PY{l+s}{0}\PY{l+s}{,}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{,}\PY{l+s}{1}\PY{l+s}{0}\PY{l+s}{1}\PY{l+s}{,}\PY{l+s}{[}\PY{l+s}{1}\PY{l+s}{,}\PY{l+s}{2}\PY{l+s}{]}\PY{l+s}{)}
+        \PY{l+s}{`}\PY{l+s}{`}\PY{l+s}{`}
+        \PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{k}{function} \PY{n}{ODEproblem}\PY{p}{(}\PY{k+kt}{Method}\PY{p}{,}\PY{n}{f}\PY{p}{,}\PY{n}{y0}\PY{p}{,}\PY{n}{intervalo}\PY{p}{,}\PY{n}{N}\PY{p}{,}\PY{n}{p}\PY{p}{)}
+            \PY{n}{a}\PY{p}{,}\PY{n}{b} \PY{o}{=} \PY{n}{intervalo}
+            \PY{n}{h} \PY{o}{=} \PY{p}{(}\PY{n}{b}\PY{o}{\PYZhy{}}\PY{n}{a}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{y} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{p}{)}
+            \PY{n}{t} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{p}{)}
+            \PY{n}{y}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{y0}
+            \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{a}
+            \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{N}
+                \PY{n}{t}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{t}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{h}
+                \PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{k+kt}{Method}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{t}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{h}\PY{p}{,}\PY{n}{p}\PY{p}{)}
+            \PY{k}{end}
+            \PY{k}{return} \PY{p}{(}\PY{n}{t}\PY{p}{[}\PY{o}{:}\PY{p}{]} \PY{p}{,}\PY{n}{y}\PY{p}{[}\PY{o}{:}\PY{p}{]}\PY{p}{)}
+        \PY{k}{end}
+\end{Verbatim}
+
+
+    \hypertarget{problema-2}{%
+\subsection*{Problema 2}\label{problema-2}}
+
+Utilizando las funciones del \textbf{Problema 1} resuelva con los tres
+métodos dados en el teórico (Euler, RK2 y RK4) el siguiente problema de
+valores iniciales: \[
+\frac{dy}{dt} = -y+\sin(2\pi t), \;\;\;\;\;\; 0 \le t \le 1\; , 
+\;\;\;\;\; y(0) = 1.0
+\] en el intervalo \(0 \le t \le 1\) con un paso de integración
+\(h=0.1\).
+
+Grafique tanto la solución obtenida y compare con la exacta:
+
+\[
+x_e(t)=\Bigl(1+\frac{2\pi}{1+4\pi^2}\Bigr)e^{-t}+\frac{\sin(2\pi t)-2\pi
+    \cos(2\pi t)}{1+4\pi^2},
+\]
+
+Grafique el error global, \(\epsilon(t) = |y(t)-y_e(t)|\)
+
+    \hypertarget{problema-3}{%
+\section*{Problema 3}\label{problema-3}}
+
+Considere el problema de valor inicial: \[
+\frac{dy}{dx} = \sin{(y)},\;\;\;\;\;\; 0\le t\le 20.0, \;\;\;\;\; y(0)=\alpha
+\] Resuélvalo para los siguientes valores iniciales \(\alpha_1=0.5\),
+\(\alpha_2=2.0\), \(\alpha_3= \pi\), \(\alpha_4=3.6\) \(\alpha_5=5.5\) y
+\(\alpha_6=2\pi\), en todos los casos con \(h=0.1\). Para cada valor
+inicial genere un archivo de salida como el indicado en el problema 1
+(solo para RK4). Luego grafique simultáneamente las seis curvas
+aproximadas a las soluciones de los seis problemas de valores iniciales
+(no olvide hacer un gráfico de calidad, completo). Analice.
+
+    \hypertarget{problema-4}{%
+\section*{Problema 4}\label{problema-4}}
+
+\textbf{Método de Runge-Kutta de orden 4}
+
+Muestre que la elección dada en el teórico para los pesos \(\vec{b}\),
+los nodos \(\vec{c}\) y la matriz \(A\) para el método RK4:
+\begin{eqnarray}
+\vec{b}&=&(1/6,1/3,1/3,1/6) \\
+\vec{c}&=&(0,1/2,1/2,1) \\
+a_{2,1}&=&1/2 \\
+a_{3,2}&=&1/2 \\
+a_{4,3}&=&1
+\end{eqnarray} conduce a las ecuaciones RK4 ``clásicas'' dadas en clase.
+
+    \hypertarget{problema-5}{%
+\section*{Problema 5}\label{problema-5}}
+
+Considere el problema de valores iniciales para la ecuación de la
+dinámica de un péndulo simple de longitud \(l\) \[
+\frac{d^2\theta}{d t^2} = - \frac{g}{l} \sin{(\theta)}, \quad
+\theta(0)=\theta_0, \quad \frac{d\theta}{d t}(0)= \dot{\theta}_0,
+\] donde \(g\) es la acelaración de la gravedad. Definiendo
+\(u= \dot{\theta}\) esta ecuación de segundo orden se puede escribir
+como un sistema de dos ecuaciones de primer orden \begin{eqnarray}
+\frac{d\theta}{d t} &=& u \hspace{5cm} (1)\\
+\frac{d u}{d t} &=& - \frac{g}{l} \sin{(\theta)}
+\end{eqnarray} mientras que las condiciones iniciales transformadas
+quedan \((u(0),\theta(0))=(\dot{\theta}_0,\theta_0)\).
+
+Resuelva este sistema de dos ecuaciones diferenciales ordinarias
+acopladas con el método RK4 para \(g=10 m/s^2\) y \(l=1 m\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Grafique \(\theta\) vs. \(t,\) para \(0\le t\le 10,\) con las
+  siguientes condiciones iniciales: a) \(u(0)=0\) y \(\theta(0)=0.5\) y
+  b) \(u(0)=0\) y \(\theta(0)=0.25\).
+\item
+  Calcule la energía del sistema en cada paso. Para las condiciones del
+  inciso anterior grafique la energía vs. \(t\). Analice la conservación
+  para distintos valores de \(h\).
+\item
+  Para las condiciones iniciales \(\theta(0)=\theta_0,\) y \(u(0)=0\),
+  las ecuaciones de movimiento del péndulo se pueden aproximar por las
+  siguientes: \begin{eqnarray}
+  \frac{d\theta}{d t} &=& u \hspace{5cm} (2)\\
+  \frac{d u}{d t} &=& - \frac{g}{l} \theta
+  \end{eqnarray} cuando \(\theta_0\ll 1\). Las ecuaciones (2) admiten
+  solución exacta \(\theta(t) = \theta_0 \cos(\sqrt{10}t)\). Compare la
+  solución exacta con aproximaciones numéricas
+  \(\theta_{\mathrm{num}}(t)\) de las ecuaciones (1) y (2) obtenidas con
+  el método RK4. Para ello, grafique la diferencia
+  \(\theta_{\mathrm{num}}(t)-\theta_0 \cos(\sqrt{10}t)\) en
+  \(0\le t\le 10\) para los casos \(\theta_0=1\) y \(\theta_0=10^{-2}\).
+\end{enumerate}
+
+\textbf{Ayuda:} Note que \(y(t)\in \mathbb{R}^2\) y
+\(f(t,y)\in \mathbb{R}^2\) donde \(y=(y_1,y_2)=(\theta,u)\) y
+\(f(t,y)=(f_1(t,y),f_2(t,y))\) con \(f_1(t,y)=y_1\) y
+\(f_2(t,y)=-\frac{g}{l}\sin(y_1)\).
+
+    \hypertarget{problemas-complementarios}{%
+\section*{Problemas Complementarios}\label{problemas-complementarios}}
+
+    \hypertarget{problema-c.1}{%
+\subsection*{Problema C.1}\label{problema-c.1}}
+
+Use el método del disparo para resolver los siguientes problemas de
+frontera con una tolerancia de \(10^{-5}\). Se da un valor tentativo
+inicial de \(h\) y la solución exacta para comparación.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(1\leq t\leq 2\), comience con \(h=0.5\) \[
+  \ddot{x}\,=\,-(\dot{x})^2 \,,\;\;\;x(1)=0\;,\;\;x(2)=\ln{(2)} \,.
+  \] Solución exacta \(x=\ln{(t})\).
+\item
+  \(-1\leq t\leq 0\), comience con \(h=0.25\) \[
+  \ddot{x}\,=\,2 x^3\,,\;\;\;x(-1)=\frac{1}{2}\;,\;\;x(0)=\frac{1}{3} \,.
+  \] Solución exacta \(x=1/(t+3)\).
+\item
+  \(1\leq t\leq 2\), comience con \(h=0.05\) \[
+  \ddot{x}\,=\,\frac{(t\,\dot{x} )^2\,-9 x^2+4 t^6}{t^5},\;\;\;x(1)=0\;,\;\;x(2)=\ln{(256)} \,.
+  \] Solución exacta \(x=t^3\,\ln{(t})\).
+\end{enumerate}
+
+\textbf{Ayuda:} Utilice el método de la bisección para encontrar la raíz
+de \(F\).
+
+    \hypertarget{problema-c.2}{%
+\subsection*{Problema C.2}\label{problema-c.2}}
+
+Considere la siguiente ecuación diferencial \[
+y^{\prime \prime} = \frac{1}{8} \left( 32 + 2 x^3 - y y' \right)    \qquad \qquad \mbox{para }
+1 \le x \le 3
+\] 
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item 
+  Utilice el método RK4 en el intervalo \(1 \le x\le 3\) para
+  resolver esta ecuación con las condiciones iniciales \(y(1) = 17\),
+  \(y'(1) = 0\). Encuentre, además \(y'(3)\).
+\item
+  Repita el inciso anterior, pero con las condiciones iniciales
+  \(y(1) = 17\), \(y'(1) = -40\).
+\item
+  Resuelva la misma ecuación diferencial con las condiciones de borde
+  \(y(1) = 17\), \(y' (3) = 0\) en \(N=400\) puntos equiespaciados de
+  \(x\in [1,3]\) usando el método de disparo. Para ello, combine el
+  método de la bisección de tolerancia \(10^{-10}\) con la información
+  de los incisos anteriores. Grafique la solución \(y\) y su derivada
+  \(y'\).
+\end{enumerate}
+
+    \hypertarget{problema-c.3}{%
+\subsection*{Problema C.3}\label{problema-c.3}}
+
+La llamada \textbf{ecuación logística} \[
+\frac{dN}{dt}= r\,N \left(1-\frac{N}{K}\right)
+\] describe el crecimiento autolimitado de una población dada
+(suponiendo que no interactúa con otras especies y que tiene fuentes
+limitadas de alimentos). Fue propuesta por Verhulst en 1838 y permite
+describir al menos cualitativamente varios fenómenos poblacionales
+observados en la naturaleza. En esta ecuación \(N(t)\) es el número de
+individuos de la colonia al tiempo \(t\) y \(K\) es una constante
+positiva.
+
+Una solución \(N^*\) se dice estacionaria si se satisface que
+\(dN^*/dt=0\), y por ende no cambia en el tiempo. Para esta ecuación es
+fácil verificar que sólo existen dos soluciones estacionarias:
+\(N_1^*=0\) y \(N_2^*=K\).
+
+Determine cuál de las dos soluciones estacionarias es estable y cuál
+inestable resolviendo numéricamente la ecuación diferencial con el
+método Runge-Kutta de cuarto orden para \(r=2\), \(K=100\), en el
+intervalo \(0\le t \le 50\) con \(h=0.1\) y considerando cinco
+condiciones iniciales diferentes: a) \(N(0)= 0\), b) \(N(0)=2\), c)
+\(N(0)=50\), d) \(N(0)= 120\) y d) \(N(0)=200\). Grafique
+simultáneamente las cinco soluciones \(t\) vs. \(N(t)\) en el intevalo
+\(0\le t\le 50\) en un gráfico completo.
+
+    \hypertarget{problema-c.3}{%
+\subsection*{Problema C.3}\label{problema-c.3}}
+
+El objeto de este problema es familiarizarse con el uso de una librería
+para resolver un sistema de ecuaciones en derivadas parciales. Para ello
+les pedimos que reproduzca en su notebook el \textbf{ejemplo 2} de esta
+página: https://diffeq.sciml.ai/stable/tutorials/ode\_example/ Se trata
+del atractor de Lorenz, un sistema que excibe caos y que es una
+simplificación \emph{extrema} de un problema de climatología. Luego de
+implementarlo, juegue cambiando las condiciones iniciales y/o
+parámetros. Cambie los métodos de integración. Esta librería tiene
+decenas de distintos métodos.
+
+\textbf{Nota:} Al comienzo tiene que poner:
+\texttt{using\ Plots,\ OrdinaryDiffEq}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
