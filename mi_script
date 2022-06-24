@@ -1,0 +1,8 @@
+function mi_max(x,y)
+	if x > y println("el mayor es $x")
+	elseif x == y println("son iguales")
+	else println("el mayor es $y")
+	end
+end
+
+
